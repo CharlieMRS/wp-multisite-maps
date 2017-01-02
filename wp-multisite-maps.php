@@ -1,13 +1,12 @@
 <?php
 
 /*
-
-Plugin Name: Maps for Multisites
-Description: Uses the Google Maps API to drop markers for each site's location as defined in ttp-plugin Biz Admin. Applies Snazzy styles. A work in progress! .
+Plugin Name: Wordpress Multisite Maps
+Description: Uses the Google Maps API to drop markers for each site's location as defined in proprietary admin plugin. Applies Snazzy styles. A work in progress! .
 Author: Charlie Meers
 Version: 1.1
-
 */
+
 add_action('wp_enqueue_scripts', 'my_enqueue_scripts');
 
 function my_enqueue_scripts() {
@@ -19,12 +18,13 @@ function my_enqueue_scripts() {
     
     // wp_register_script( "script", dirname(__FILE__) . '/map_style.json' );
     wp_register_script( "script", plugins_url('map_style.json', __FILE__) );
-      wp_enqueue_script( "script" );
+    wp_enqueue_script( "script" );
+	  
     wp_localize_script( 'script', 'wpGlobals', array(
 
       'mapOptions' => file_get_contents( dirname(__FILE__) . '/map_style.json' )
 
-      ) );
+    ) );
   }
 }
 
